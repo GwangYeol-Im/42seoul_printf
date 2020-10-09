@@ -6,7 +6,7 @@
 #    By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 14:26:20 by gim               #+#    #+#              #
-#    Updated: 2020/10/08 15:48:17 by gim              ###   ########.fr        #
+#    Updated: 2020/10/08 15:57:20 by gim              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ clean:
 		make clean -C libft/
 		$(RM) $(OBJS) $(OBJS_B)
 
-fclean: clean
+fclean:
+		make fclean -C libft/
 		$(RM) $(NAME)
 
 re: fclean all
