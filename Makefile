@@ -6,7 +6,7 @@
 #    By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 14:26:20 by gim               #+#    #+#              #
-#    Updated: 2020/10/08 15:57:20 by gim              ###   ########.fr        #
+#    Updated: 2020/10/22 15:03:57 by gim              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,35 +21,35 @@ NAME = libftprintf.a
 LIBFT = libft.a
 LIBFT_H = ./libft/libft.h
 
-SRCS = //
-
-SRCS_B = //
+SRCS = ft_printf.c \
+		print_format.c \
+		print.c \
+		check_specifier.c \
 
 OBJS = $(SRCS:c=o)
-OBJS_B = $(SRCS_B:c=o)
-
-$(LIBFT):
-		make all -C libft/
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -L./libft -lft $<
+		$(CC) $(CFLAGS) -c $<
 
 $(NAME): $(LIBFT) $(OBJS)
-		$(AR) $(ARFLAGS) $@ $^
+		mkdir libft_o && cd libft_o && ar -x ../libft/libft.a && cd ..
+		$(AR) $(ARFLAGS) $@ libft_o/*.o $(OBJS)
+		rm -rf libft_o
 
 bonus: $(OBJS_B)
 		$(AR) $(ARFLAGS) $(NAME) $^
 
 all: $(NAME)
 
+$(LIBFT):
+		make -C libft/
+
 clean:
 		make clean -C libft/
 		$(RM) $(OBJS) $(OBJS_B)
 
-fclean:
+fclean: 
 		make fclean -C libft/
-		$(RM) $(NAME)
+		$(RM) $(NAME) $(LIBFT)
 
 re: fclean all
-
-
