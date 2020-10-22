@@ -6,7 +6,7 @@
 #    By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 14:26:20 by gim               #+#    #+#              #
-#    Updated: 2020/10/22 17:27:09 by gim              ###   ########.fr        #
+#    Updated: 2020/10/22 19:43:04 by gim              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = ft_printf.c \
 		print.c \
 		check_specifier.c \
 		itoa_ui.c \
+		convert_base.c \
 
 OBJS = $(SRCS:c=o)
 
