@@ -6,7 +6,7 @@
 #    By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 14:26:20 by gim               #+#    #+#              #
-#    Updated: 2020/10/22 15:19:08 by gim              ###   ########.fr        #
+#    Updated: 2020/10/22 17:27:09 by gim              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = ft_printf.c \
 		print_format.c \
 		print.c \
 		check_specifier.c \
+		itoa_ui.c \
 
 OBJS = $(SRCS:c=o)
 
@@ -51,8 +52,9 @@ clean:
 		make clean -C libft/
 		$(RM) $(OBJS) $(OBJS_B)
 
-fclean: 
+fclean:
 		make fclean -C libft/
+		$(RM) $(OBJS) $(OBJS_B)
 		$(RM) $(NAME) $(LIBFT)
 
 re: fclean all

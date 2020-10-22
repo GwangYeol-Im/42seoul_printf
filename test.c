@@ -5,6 +5,7 @@ int main(void)
 {
     int n;
 
-    ft_printf("this is %d teest. %c\n", 1, 'c');
+    printf("%%%c%szz%dzz%i%uzz!!\n", 'a', "str", 1, 2, -123);
+    ft_printf("%%%c%szz%dzz%i%uzz!!\n", 'a', "str", 1, 2, -123);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:13:03 by gim               #+#    #+#             */
-/*   Updated: 2020/10/22 16:23:55 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/22 17:16:54 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			ft_printf(const char *str, ...)
 	{
 		while (str[idx] && str[idx] != '%')
 			write(1, &str[idx++], 1);
+		if (!str[idx])
+			break ;
 		fprint = ++idx;
 		while (str[idx] && !check_specifier(str[idx]))
 			idx++;

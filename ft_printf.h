@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:51:21 by gim               #+#    #+#             */
-/*   Updated: 2020/10/22 13:26:17 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/22 17:26:55 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int					check_format(char c);
 int					check_specifier(char c);
 int					print_format(const char *format, char spec, va_list ap);
 void				print(const char *str);
+char				*itoa_ui(unsigned int n);
 
 #endif

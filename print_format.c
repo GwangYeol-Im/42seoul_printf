@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:07:34 by gim               #+#    #+#             */
-/*   Updated: 2020/10/22 13:39:00 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/22 17:27:28 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int			print_format(const char *format, char spec, va_list ap)
 	else if (spec == 'd' || spec == 'i')
 		print(ft_itoa(spec_list->i = va_arg(ap, int)));
 	else if (spec == 'u')
-		print(ft_itoa(spec_list->ui = va_arg(ap, unsigned int)));
+		print(itoa_ui(spec_list->ui = va_arg(ap, unsigned int)));
 	else if (spec == 'x' || spec == 'X')
 		print("1");
+	else if (spec == '%')
+		print("%");
 	free(spec_list);
 	return (1);
 }
