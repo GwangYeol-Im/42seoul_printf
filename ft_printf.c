@@ -6,17 +6,17 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:51:04 by gim               #+#    #+#             */
-/*   Updated: 2020/10/09 16:57:40 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/09 17:19:41 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_alloc(char *str, char *split, char *dest)
+int			ft_alloc(char *str, int idx, char *dest)
 {
 	char	*temp;
 
-	*split = '\0';
+	str[idx] = '\0';
 	if (!dest)
 		dest = ft_strdup(str);
 	else
@@ -25,27 +25,34 @@ void		ft_alloc(char *str, char *split, char *dest)
 		free(dest);
 		dest = temp;
 	}
-	temp = ft_strdup(split + 1);
+	temp = ft_strdup(str[idx] + 1);
 	free(str);
 	str = temp;
-	split = temp;
+	return (idx);
 }
 
 int			ft_print_str(va_list *args, char *str)
 {
 	int		len;
+	int		idx;
 	char	*temp;
 	char	*result;
 
-	temp = str;
-	while (*str)
+	len = 0;
+	idx = 0;
+	while (str[idx])
 	{
-		while (*temp != '%' && *temp)
-			temp++;
-		if (!*temp)
+		while (str[idx] != '%' && str[idx])
+			idx++;
+		if (!str[idx])
 			break ;
-		ft_alloc(str, temp, result);
+		len += ft_alloc(str, idx, result);
+		idx = 0;
+		while (!check_format(str[idx]))
+			idx++;
 	}
+	write(1, result, ft_strlen(result));
+	return (len);
 }
 
 int			ft_printf(const char *str, ...)
