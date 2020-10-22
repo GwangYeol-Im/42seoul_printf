@@ -3,6 +3,8 @@
 
 int main(void)
 {
-    ft_printf("%d", 1);
+    int n;
+
+    ft_printf("this is %d teest. %c\n", 1, 'c');
     return (0);
 }

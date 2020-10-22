@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:13:03 by gim               #+#    #+#             */
-/*   Updated: 2020/10/22 13:23:22 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/22 16:23:55 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int			ft_printf(const char *str, ...)
 	while (str[idx])
 	{
 		while (str[idx] && str[idx] != '%')
-			print(&str[idx++]);
+			write(1, &str[idx++], 1);
 		fprint = ++idx;
 		while (str[idx] && !check_specifier(str[idx]))
 			idx++;
-		format = ft_substr(str, fprint, idx - fprint);
-		if (!(str[idx] && print_format(format, str[idx], ap)))
+		if (!(format = ft_substr(str, fprint, idx - fprint + 1)) \
+			|| !(str[idx] && print_format(format, str[idx], ap)))
 			return (-1);
 		free(format);
+		idx++;
 	}
+	va_end(ap);
 	return (0);
 }

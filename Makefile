@@ -6,7 +6,7 @@
 #    By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 14:26:20 by gim               #+#    #+#              #
-#    Updated: 2020/10/22 15:03:57 by gim              ###   ########.fr        #
+#    Updated: 2020/10/22 15:19:08 by gim              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,9 @@ $(NAME): $(LIBFT) $(OBJS)
 		mkdir libft_o && cd libft_o && ar -x ../libft/libft.a && cd ..
 		$(AR) $(ARFLAGS) $@ libft_o/*.o $(OBJS)
 		rm -rf libft_o
+
+test:
+		gcc test.c -L. -lftprintf
 
 bonus: $(OBJS_B)
 		$(AR) $(ARFLAGS) $(NAME) $^
