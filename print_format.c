@@ -6,41 +6,41 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:07:34 by gim               #+#    #+#             */
-/*   Updated: 2020/10/22 22:33:19 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/28 20:15:30 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			print_format(const char *format, char spec, va_list ap)
+void		init_info(t_info *info)
 {
-	t_spec	*spec_list;
-	char	*temp;
+	info->nbr_base = 10;
+	info->nbr_sign = 1;
+}
 
-	temp = (char *)format;
-	spec_list = (t_spec *)malloc(sizeof(t_spec));
-	if (spec == 'c')
-	{
-		spec_list->c = va_arg(ap, int);
-		print(&spec_list->c);
-	}
-	else if (spec == 'p')
-	{
-		print("0x");
-		print(convert_base(spec_list->addr = va_arg(ap, unsigned long long), 'x'));
-	}
-	else if (spec == 's')
-		print(spec_list->content = va_arg(ap, char *));
-	else if (spec == 'd' || spec == 'i')
-		print(ft_itoa(spec_list->i = va_arg(ap, int)));
-	else if (spec == 'u')
-		print(itoa_ui(spec_list->ui = va_arg(ap, unsigned int)));
-	else if (spec == 'x')
-		print(convert_base(spec_list->ui = va_arg(ap, unsigned int), spec));
-	else if (spec == 'X')
-		print(convert_base(spec_list->ui = va_arg(ap, unsigned int), spec));
-	else if (spec == '%')
-		print("%");
-	free(spec_list);
-	return (1);
+int			print_format(char *buf, va_list ap)
+{
+	int		len;
+	int		ret;
+	t_info	*Info;
+
+	ret = 0;
+	len = ft_strlen(buf);
+	Info = (t_info *)malloc(sizeof(t_info));
+	init_info(Info);
+	Info->type = buf[len - 1];
+	if (Info->type == '%')
+		ret = print_char('%');
+	else if (Info->type == 'c')
+		ret = print_char(va_arg(ap, int));
+	else if (Info->type == 's')
+		ret = print_str(va_arg(ap, char *));
+	else if (Info->type == 'd' || Info->type == 'i')
+		ret = print_nbr(va_arg(ap, int));
+	else if (Info->type == 'u' || Info->type == 'x' || Info->type == 'X')
+		ret = print_nbr(va_arg(ap, unsigned int));
+	else if (Info->type == 'p')
+		ret = print_nbr(va_arg(ap, unsigned long long));
+	free(Info);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 #    By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 14:26:20 by gim               #+#    #+#              #
-#    Updated: 2020/10/22 19:43:04 by gim              ###   ########.fr        #
+#    Updated: 2020/10/28 20:06:31 by gim              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,9 @@ LIBFT_H = ./libft/libft.h
 
 SRCS = ft_printf.c \
 		print_format.c \
-		print.c \
-		check_specifier.c \
-		itoa_ui.c \
-		convert_base.c \
+		print_char.c \
+		print_nbr.c \
+		print_str.c \
 
 OBJS = $(SRCS:c=o)
 
